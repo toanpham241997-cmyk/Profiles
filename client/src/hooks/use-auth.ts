@@ -113,3 +113,39 @@ export function useLogout() {
     },
   });
 }
+
+export function useUpdateUser() {
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
+
+  return useMutation({
+    mutationFn: async (data: Partial<InsertUser>) => {
+      const res = await fetch(api.auth.update.path, {
+        method: api.auth.update.method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message || "Update failed");
+      }
+      return api.auth.update.responses[200].parse(await res.json());
+    },
+    onSuccess: (user) => {
+      queryClient.setQueryData([api.auth.me.path], user);
+      toast({
+        title: "Profile Updated",
+        description: "Your information has been saved.",
+      });
+    },
+    onError: (error) => {
+      toast({
+        variant: "destructive",
+        title: "Update Failed",
+        description: error.message,
+      });
+    },
+  });
+}

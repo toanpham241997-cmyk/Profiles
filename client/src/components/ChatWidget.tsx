@@ -47,7 +47,10 @@ export function ChatWidget() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-24 right-6 w-96 h-[500px] bg-background border-2 border-primary z-50 shadow-2xl clip-tech-card flex flex-col"
+            className="fixed bottom-24 right-6 w-80 h-[450px] bg-background border-2 border-primary z-50 shadow-2xl flex flex-col overflow-hidden"
+            style={{ 
+              clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%)" 
+            }}
           >
             {/* Header */}
             <div className="bg-primary p-4 flex items-center justify-between text-primary-foreground">

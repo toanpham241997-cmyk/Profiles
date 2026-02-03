@@ -4,9 +4,30 @@ import { TechButton } from "@/components/TechButton";
 import { categories } from "@shared/schema";
 import { motion } from "framer-motion";
 import { Code2, Cpu, Globe, Zap, Terminal } from "lucide-react";
+import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const { data: products, isLoading } = useProducts();
+
+  useEffect(() => {
+    const hasVisited = sessionStorage.getItem("hasVisited");
+    if (!hasVisited) {
+      Swal.fire({
+        title: 'WELCOME TO HUẤN HÀ PORTFOLIO',
+        text: 'Khám phá các dịch vụ web và hack game đỉnh cao!',
+        icon: 'info',
+        confirmButtonText: 'BẮT ĐẦU NGAY',
+        confirmButtonColor: 'hsl(190, 90%, 45%)',
+        background: '#fff',
+        customClass: {
+          title: 'font-display font-black',
+          popup: 'rounded-none border-4 border-primary'
+        }
+      });
+      sessionStorage.setItem("hasVisited", "true");
+    }
+  }, []);
 
   const skills = [
     { name: "React / Next.js", level: 95, icon: <Globe className="w-5 h-5" /> },
