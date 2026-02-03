@@ -7,18 +7,12 @@
   "engines": {
     "node": ">=20"
   },
-  "scripts": {
-    "dev": "NODE_ENV=development tsx server/index.ts",
-
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build",
-    "build:server": "tsc -p tsconfig.server.json",
-
-    "start": "NODE_ENV=production node dist/index.js",
-
-    "check": "tsc -p tsconfig.json --noEmit",
-    "db:push": "drizzle-kit push"
-  },
+"scripts": {
+  "dev": "NODE_ENV=development tsx server/index.ts",
+  "start": "NODE_ENV=production node dist/index.js",
+  "check": "tsc -p tsconfig.server.json --noEmit",
+  "db:push": "drizzle-kit push"
+},
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",
